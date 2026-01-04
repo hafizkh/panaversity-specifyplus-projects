@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(bash:*)"
+      "Bash(bash:*)",
+      "SlashCommand(/sp.implement)",
+      "Bash(uv sync:*)",
+      "Bash(uv run:*)"
     ],
     "deny": [],
     "ask": []
