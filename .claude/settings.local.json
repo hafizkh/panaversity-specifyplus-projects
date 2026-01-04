@@ -4,7 +4,8 @@
       "Bash(bash:*)",
       "SlashCommand(/sp.implement)",
       "Bash(uv sync:*)",
-      "Bash(uv run:*)"
+      "Bash(uv run:*)",
+      "Bash(tree:*)"
     ],
     "deny": [],
     "ask": []
