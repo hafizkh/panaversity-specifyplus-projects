@@ -32,15 +32,28 @@ app.add_middleware(
 # Include API routes
 app.include_router(router)
 
-# Mount static files
-app.mount("/css", StaticFiles(directory=FRONTEND_DIR / "css"), name="css")
-app.mount("/js", StaticFiles(directory=FRONTEND_DIR / "js"), name="js")
-
 
 @app.get("/")
 async def serve_frontend() -> FileResponse:
     """Serve the frontend HTML."""
     return FileResponse(FRONTEND_DIR / "index.html")
+
+
+@app.get("/favicon.svg")
+async def serve_favicon_svg() -> FileResponse:
+    """Serve the SVG favicon."""
+    return FileResponse(FRONTEND_DIR / "favicon.svg", media_type="image/svg+xml")
+
+
+@app.get("/favicon.ico")
+async def serve_favicon_ico() -> FileResponse:
+    """Serve the favicon (browsers often request .ico)."""
+    return FileResponse(FRONTEND_DIR / "favicon.svg", media_type="image/svg+xml")
+
+
+# Mount static files AFTER explicit routes
+app.mount("/css", StaticFiles(directory=FRONTEND_DIR / "css"), name="css")
+app.mount("/js", StaticFiles(directory=FRONTEND_DIR / "js"), name="js")
 
 
 def run() -> None:
