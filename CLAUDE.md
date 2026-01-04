@@ -208,3 +208,10 @@ Wait for consent; never auto-create ADRs. Group related decisions (stacks, authe
 
 ## Code Standards
 See `.specify/memory/constitution.md` for code quality, testing, performance, security, and architecture principles.
+
+## Active Technologies
+- Python 3.11+ (required for modern type hint features per constitution) + Standard library only (argparse for CLI, math for advanced operations) (001-cli-calculator)
+- N/A (stateless CLI application) (001-cli-calculator)
+
+## Recent Changes
+- 001-cli-calculator: Added Python 3.11+ (required for modern type hint features per constitution) + Standard library only (argparse for CLI, math for advanced operations)
