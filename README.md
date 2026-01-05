@@ -2,15 +2,33 @@
 
 A modern, feature-rich calculator with both CLI and Web UI interfaces. Built with Python, FastAPI, and vanilla JavaScript.
 
+## 🌐 Live Demo
+
+**Try it now:** [https://nice-agna-hafizteam-8f05be97.koyeb.app](https://nice-agna-hafizteam-8f05be97.koyeb.app)
+
 ## Features
 
 - **Dual Interface**: Use via command line or beautiful web UI
+- **Simple & Scientific Modes**: Toggle between basic and advanced calculator
 - **Basic Operations**: Addition, subtraction, multiplication, division
-- **Advanced Operations**: Power, modulo, square root
-- **Modern Web UI**: Dark theme, keyboard support, responsive design
+- **Scientific Operations**: Trigonometry (sin, cos, tan), logarithms (log, ln), powers, roots, factorial, and more
+- **Modern Web UI**: Glassmorphism design, keyboard support, responsive layout
 - **REST API**: Full API with OpenAPI documentation
 - **Type Safe**: Strict type hints with mypy validation
 - **Well Tested**: 140+ tests with 88%+ coverage
+
+## Screenshots
+
+### Simple Mode
+- Clean, minimal interface
+- Basic arithmetic operations
+- AC, CE, and backspace buttons
+
+### Scientific Mode
+- 20 scientific functions
+- Trigonometric functions (degrees)
+- Logarithms, exponentials, factorial
+- Constants (π, e)
 
 ## Quick Start
 
@@ -64,13 +82,17 @@ uv run calc-web
 # http://localhost:8000
 ```
 
+Or visit the live version: [https://nice-agna-hafizteam-8f05be97.koyeb.app](https://nice-agna-hafizteam-8f05be97.koyeb.app)
+
 The web UI features:
-- Modern dark theme with accent colors
+- **Mode Toggle**: Switch between Simple and Scientific calculators
+- Modern glassmorphism design with animated background
 - Keyboard support (type numbers and operators)
-- Click animations and hover effects
+- Press **Tab** to toggle between Simple/Scientific modes
 - Expression history display
 - Error handling with visual feedback
 - Responsive design for mobile devices
+- Mode preference saved to localStorage
 
 #### REST API
 
@@ -78,25 +100,83 @@ When the web server is running, you can also use the REST API directly:
 
 ```bash
 # Calculate
-curl -X POST http://localhost:8000/api/calculate \
+curl -X POST https://nice-agna-hafizteam-8f05be97.koyeb.app/api/calculate \
   -H "Content-Type: application/json" \
   -d '{"operand1": 5, "operator": "+", "operand2": 3}'
 
 # Response: {"success": true, "result": 8, "display": "8"}
 
-# Square root (unary operation)
-curl -X POST http://localhost:8000/api/calculate \
+# Scientific functions
+curl -X POST https://nice-agna-hafizteam-8f05be97.koyeb.app/api/calculate \
   -H "Content-Type: application/json" \
-  -d '{"operand1": 16, "operator": "sqrt"}'
+  -d '{"operand1": 45, "operator": "sin"}'
+
+# Response: {"success": true, "result": 0.7071067811865476, "display": "0.7071067812"}
 
 # List operators
-curl http://localhost:8000/api/operators
+curl https://nice-agna-hafizteam-8f05be97.koyeb.app/api/operators
 
 # Health check
-curl http://localhost:8000/api/health
+curl https://nice-agna-hafizteam-8f05be97.koyeb.app/api/health
 ```
 
-API documentation is available at http://localhost:8000/docs (Swagger UI).
+API documentation is available at [https://nice-agna-hafizteam-8f05be97.koyeb.app/docs](https://nice-agna-hafizteam-8f05be97.koyeb.app/docs) (Swagger UI).
+
+## Supported Operations
+
+### Basic Operations
+
+| Operator | Type   | Description    | Example           |
+|----------|--------|----------------|-------------------|
+| `+`      | Binary | Addition       | `5 + 3` → `8`     |
+| `-`      | Binary | Subtraction    | `10 - 4` → `6`    |
+| `*`      | Binary | Multiplication | `6 * 7` → `42`    |
+| `/`      | Binary | Division       | `20 / 4` → `5`    |
+| `^`      | Binary | Power          | `2 ^ 8` → `256`   |
+| `%`      | Binary | Modulo         | `17 % 5` → `2`    |
+
+### Scientific Operations
+
+| Operator | Type  | Description         | Example              |
+|----------|-------|---------------------|----------------------|
+| `sin`    | Unary | Sine (degrees)      | `sin(90)` → `1`      |
+| `cos`    | Unary | Cosine (degrees)    | `cos(0)` → `1`       |
+| `tan`    | Unary | Tangent (degrees)   | `tan(45)` → `1`      |
+| `asin`   | Unary | Arc sine (degrees)  | `asin(1)` → `90`     |
+| `acos`   | Unary | Arc cosine (degrees)| `acos(1)` → `0`      |
+| `atan`   | Unary | Arc tangent (degrees)| `atan(1)` → `45`    |
+| `log`    | Unary | Log base 10         | `log(100)` → `2`     |
+| `ln`     | Unary | Natural log         | `ln(e)` → `1`        |
+| `exp`    | Unary | e^x                 | `exp(1)` → `2.718`   |
+| `sqrt`   | Unary | Square root         | `sqrt(16)` → `4`     |
+| `sqr`    | Unary | Square (x²)         | `sqr(5)` → `25`      |
+| `cbrt`   | Unary | Cube root           | `cbrt(27)` → `3`     |
+| `inv`    | Unary | Reciprocal (1/x)    | `inv(4)` → `0.25`    |
+| `abs`    | Unary | Absolute value      | `abs(-5)` → `5`      |
+| `neg`    | Unary | Negate (±)          | `neg(5)` → `-5`      |
+| `fact`   | Unary | Factorial (n!)      | `fact(5)` → `120`    |
+
+## Keyboard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| `0-9` | Input numbers |
+| `+`, `-`, `*`, `/`, `^`, `%` | Operators |
+| `.` | Decimal point |
+| `Enter` or `=` | Calculate |
+| `Backspace` | Delete last digit |
+| `Escape` | Clear all (AC) |
+| `Delete` | Clear entry (CE) |
+| `Tab` | Toggle Simple/Scientific mode |
+| `s` | sin (Scientific mode) |
+| `c` | cos (Scientific mode) |
+| `t` | tan (Scientific mode) |
+| `l` | log (Scientific mode) |
+| `n` | ln (Scientific mode) |
+| `r` | sqrt (Scientific mode) |
+| `p` | π (Scientific mode) |
+| `e` | e constant (Scientific mode) |
+| `!` | factorial (Scientific mode) |
 
 ## Project Structure
 
@@ -112,7 +192,8 @@ calculator_panaversity/
 │   │   └── operations/       # Math operations
 │   │       ├── __init__.py   # Operation registry
 │   │       ├── basic.py      # +, -, *, /
-│   │       └── advanced.py   # ^, %, sqrt
+│   │       ├── advanced.py   # ^, %, sqrt
+│   │       └── scientific.py # sin, cos, log, etc.
 │   ├── api/                  # REST API backend
 │   │   ├── __init__.py
 │   │   ├── main.py           # FastAPI application
@@ -121,29 +202,20 @@ calculator_panaversity/
 │   └── frontend/             # Web UI
 │       ├── index.html
 │       ├── css/
-│       │   └── style.css
+│       │   └── style.css     # Glassmorphism styles
 │       └── js/
-│           └── app.js
+│           └── app.js        # Calculator logic
 ├── tests/
 │   ├── unit/                 # Unit tests
 │   ├── integration/          # Integration tests
 │   └── api/                  # API tests
-├── specs/                    # Feature specifications
+├── app.py                    # Deployment entry point
+├── Dockerfile                # Docker configuration
+├── Procfile                  # Railway/Heroku config
+├── render.yaml               # Render config
 ├── pyproject.toml            # Project configuration
 └── README.md
 ```
-
-## Supported Operations
-
-| Operator | Type   | Description    | Example           |
-|----------|--------|----------------|-------------------|
-| `+`      | Binary | Addition       | `5 + 3` → `8`     |
-| `-`      | Binary | Subtraction    | `10 - 4` → `6`    |
-| `*`      | Binary | Multiplication | `6 * 7` → `42`    |
-| `/`      | Binary | Division       | `20 / 4` → `5`    |
-| `^`      | Binary | Power          | `2 ^ 8` → `256`   |
-| `%`      | Binary | Modulo         | `17 % 5` → `2`    |
-| `sqrt`   | Unary  | Square root    | `sqrt 16` → `4`   |
 
 ## Error Handling
 
@@ -156,6 +228,7 @@ The calculator provides clear error messages:
 | Missing operand     | 1         | `calc 5 +`                 |
 | Division by zero    | 2         | `calc 10 / 0`              |
 | Negative square root| 2         | `calc sqrt -4`             |
+| Domain error        | 2         | `calc asin 2`              |
 
 ## Development
 
@@ -201,41 +274,23 @@ uv run ruff format && uv run ruff check && uv run mypy src/ && uv run pytest
 - **Testing**: pytest with 80%+ coverage requirement
 - **Documentation**: Google-style docstrings
 
-## Architecture
+## Deployment
 
-### Operation Registry Pattern
+The app is deployed on Koyeb and can be deployed to other platforms:
 
-Operations are registered using decorators, making it easy to add new operations:
+### Docker
 
-```python
-from calculator.operations import register_binary
-
-@register_binary("**")
-def double_power(a: float, b: float) -> float:
-    """Raise a to the power of b, then square it."""
-    return (a ** b) ** 2
+```bash
+docker build -t calculator-panaversity .
+docker run -p 8000:8000 calculator-panaversity
 ```
 
-### Error Hierarchy
+### Supported Platforms
 
-```
-CalculatorError (base)
-├── InvalidNumberError      (exit code 1)
-├── InvalidOperatorError    (exit code 1)
-├── MissingOperandError     (exit code 1)
-├── DivisionByZeroError     (exit code 2)
-├── OverflowError           (exit code 2)
-└── NegativeSqrtError       (exit code 2)
-```
-
-### API Endpoints
-
-| Method | Endpoint          | Description              |
-|--------|-------------------|--------------------------|
-| GET    | `/`               | Serve web UI             |
-| GET    | `/api/health`     | Health check             |
-| GET    | `/api/operators`  | List available operators |
-| POST   | `/api/calculate`  | Perform calculation      |
+- **Koyeb** (current): [Live Demo](https://nice-agna-hafizteam-8f05be97.koyeb.app)
+- **Render**: Use `render.yaml`
+- **Railway**: Use `Procfile`
+- **Docker**: Use `Dockerfile`
 
 ## Technologies
 
