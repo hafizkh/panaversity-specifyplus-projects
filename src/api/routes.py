@@ -5,6 +5,7 @@ from fastapi import APIRouter, HTTPException
 # Import operations to register them
 import calculator.operations.advanced  # noqa: F401
 import calculator.operations.basic  # noqa: F401
+import calculator.operations.scientific  # noqa: F401
 from calculator import __version__
 from calculator.errors import CalculatorError
 from calculator.formatter import format_result
@@ -42,13 +43,32 @@ async def health_check() -> HealthResponse:
 async def get_operators() -> OperatorsResponse:
     """Get list of available operators."""
     operators = [
+        # Binary operators
         OperatorInfo(symbol="+", type="binary", description="Addition"),
         OperatorInfo(symbol="-", type="binary", description="Subtraction"),
         OperatorInfo(symbol="*", type="binary", description="Multiplication"),
         OperatorInfo(symbol="/", type="binary", description="Division"),
         OperatorInfo(symbol="^", type="binary", description="Power"),
         OperatorInfo(symbol="%", type="binary", description="Modulo"),
+        # Unary operators - Basic
         OperatorInfo(symbol="sqrt", type="unary", description="Square root"),
+        OperatorInfo(symbol="sqr", type="unary", description="Square (x²)"),
+        OperatorInfo(symbol="cbrt", type="unary", description="Cube root"),
+        OperatorInfo(symbol="inv", type="unary", description="Reciprocal (1/x)"),
+        OperatorInfo(symbol="abs", type="unary", description="Absolute value"),
+        OperatorInfo(symbol="neg", type="unary", description="Negate (+/-)"),
+        OperatorInfo(symbol="fact", type="unary", description="Factorial (n!)"),
+        # Unary operators - Trigonometric (degrees)
+        OperatorInfo(symbol="sin", type="unary", description="Sine (degrees)"),
+        OperatorInfo(symbol="cos", type="unary", description="Cosine (degrees)"),
+        OperatorInfo(symbol="tan", type="unary", description="Tangent (degrees)"),
+        OperatorInfo(symbol="asin", type="unary", description="Arc sine (degrees)"),
+        OperatorInfo(symbol="acos", type="unary", description="Arc cosine (degrees)"),
+        OperatorInfo(symbol="atan", type="unary", description="Arc tangent (degrees)"),
+        # Unary operators - Logarithmic/Exponential
+        OperatorInfo(symbol="log", type="unary", description="Log base 10"),
+        OperatorInfo(symbol="ln", type="unary", description="Natural log"),
+        OperatorInfo(symbol="exp", type="unary", description="e^x"),
     ]
     return OperatorsResponse(operators=operators)
 

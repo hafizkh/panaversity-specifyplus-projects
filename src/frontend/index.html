@@ -3,46 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
+    <meta name="description" content="Professional calculator with simple and scientific modes">
+    <meta name="theme-color" content="#0f0c29">
+    <title>Calculator | Panaversity</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <div class="calculator">
+    <div class="calculator" id="calculator">
+        <!-- Mode Toggle -->
+        <div class="mode-toggle">
+            <button class="toggle-btn active" id="simpleMode" data-mode="simple">Simple</button>
+            <button class="toggle-btn" id="scientificMode" data-mode="scientific">Scientific</button>
+        </div>
+
         <div class="display">
+            <div class="mode-indicator" id="modeIndicator">
+                <span class="mode deg active" id="degMode">DEG</span>
+            </div>
             <div class="expression" id="expression"></div>
             <div class="result" id="result">0</div>
         </div>
-        <div class="buttons">
-            <button class="btn btn-clear" data-action="clear">C</button>
-            <button class="btn btn-operator" data-action="sqrt">√</button>
-            <button class="btn btn-operator" data-operator="%">%</button>
-            <button class="btn btn-operator" data-operator="/">÷</button>
+
+        <!-- Scientific Functions (hidden by default) -->
+        <div class="buttons scientific-buttons" id="scientificButtons">
+            <!-- Row 1: Trigonometric -->
+            <button class="btn btn-function" data-action="sin" aria-label="Sine">sin</button>
+            <button class="btn btn-function" data-action="cos" aria-label="Cosine">cos</button>
+            <button class="btn btn-function" data-action="tan" aria-label="Tangent">tan</button>
+            <button class="btn btn-function" data-action="log" aria-label="Logarithm base 10">log</button>
+            <button class="btn btn-function" data-action="ln" aria-label="Natural logarithm">ln</button>
+
+            <!-- Row 2: Inverse Trig & Exp -->
+            <button class="btn btn-function" data-action="asin" aria-label="Arc sine">sin⁻¹</button>
+            <button class="btn btn-function" data-action="acos" aria-label="Arc cosine">cos⁻¹</button>
+            <button class="btn btn-function" data-action="atan" aria-label="Arc tangent">tan⁻¹</button>
+            <button class="btn btn-function" data-action="exp" aria-label="e to the power">eˣ</button>
+            <button class="btn btn-function" data-action="fact" aria-label="Factorial">n!</button>
+
+            <!-- Row 3: Powers & Roots -->
+            <button class="btn btn-function" data-action="sqr" aria-label="Square">x²</button>
+            <button class="btn btn-function" data-action="sqrt" aria-label="Square root">√x</button>
+            <button class="btn btn-function" data-action="cbrt" aria-label="Cube root">∛x</button>
+            <button class="btn btn-function" data-operator="^" aria-label="Power">xʸ</button>
+            <button class="btn btn-function" data-action="inv" aria-label="Reciprocal">1/x</button>
+
+            <!-- Row 4: Special -->
+            <button class="btn btn-function" data-action="pi" aria-label="Pi constant">π</button>
+            <button class="btn btn-function" data-action="e" aria-label="Euler's number">e</button>
+            <button class="btn btn-function" data-action="abs" aria-label="Absolute value">|x|</button>
+            <button class="btn btn-function" data-operator="%" aria-label="Modulo">mod</button>
+            <button class="btn btn-function" data-action="neg" aria-label="Negate">±</button>
+        </div>
+
+        <!-- Standard Calculator Buttons -->
+        <div class="buttons standard-buttons" id="standardButtons">
+            <button class="btn btn-clear" data-action="clear" aria-label="Clear all">AC</button>
+            <button class="btn btn-clear-entry" data-action="clearEntry" aria-label="Clear entry">CE</button>
+            <button class="btn btn-backspace" data-action="backspace" aria-label="Backspace">⌫</button>
+            <button class="btn btn-operator" data-operator="/" aria-label="Divide">÷</button>
 
             <button class="btn btn-number" data-number="7">7</button>
             <button class="btn btn-number" data-number="8">8</button>
             <button class="btn btn-number" data-number="9">9</button>
-            <button class="btn btn-operator" data-operator="*">×</button>
+            <button class="btn btn-operator" data-operator="*" aria-label="Multiply">×</button>
 
             <button class="btn btn-number" data-number="4">4</button>
             <button class="btn btn-number" data-number="5">5</button>
             <button class="btn btn-number" data-number="6">6</button>
-            <button class="btn btn-operator" data-operator="-">−</button>
+            <button class="btn btn-operator" data-operator="-" aria-label="Subtract">−</button>
 
             <button class="btn btn-number" data-number="1">1</button>
             <button class="btn btn-number" data-number="2">2</button>
             <button class="btn btn-number" data-number="3">3</button>
-            <button class="btn btn-operator" data-operator="+">+</button>
+            <button class="btn btn-operator" data-operator="+" aria-label="Add">+</button>
 
-            <button class="btn btn-number" data-number="0">0</button>
-            <button class="btn btn-number" data-action="decimal">.</button>
-            <button class="btn btn-operator" data-operator="^">^</button>
-            <button class="btn btn-equals" data-action="calculate">=</button>
+            <button class="btn btn-number btn-zero" data-number="0">0</button>
+            <button class="btn btn-number" data-action="decimal" aria-label="Decimal point">.</button>
+            <button class="btn btn-equals" data-action="calculate" aria-label="Calculate">=</button>
         </div>
+
+        <span class="keyboard-hint">Keyboard shortcuts available</span>
     </div>
 
     <footer class="footer">
-        <p>Calculator Panaversity | <a href="/docs" target="_blank">API Docs</a></p>
+        <p>Calculator Panaversity <span>|</span> <a href="/docs" target="_blank" rel="noopener">API Docs</a></p>
     </footer>
 
     <script src="/js/app.js"></script>
